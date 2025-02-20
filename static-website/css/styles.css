@@ -19,13 +19,31 @@ html {
     border-radius: 4px;
 }
 
-/* Image hover effects */
-.group:hover img {
-    transform: scale(1.1);
+/* Mobile menu styles */
+#mobile-menu {
+    z-index: 1000;
 }
 
-img {
-    transition: transform 0.3s ease;
+#mobile-menu > div {
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+#mobile-menu.hidden {
+    display: none;
+}
+
+#mobile-menu:not(.hidden) > div {
+    transform: translateX(0);
+}
+
+/* Section spacing */
+section {
+    padding: 5rem 0;
+    scroll-margin-top: 4rem; /* Accounts for fixed header */
 }
 
 /* Button hover animations */
@@ -37,41 +55,31 @@ button:hover {
     transform: translateY(-1px);
 }
 
+/* Image hover effects */
+.group:hover img {
+    transform: scale(1.1);
+}
+
+img {
+    transition: transform 0.3s ease;
+}
+
+/* Typography enhancements */
+h1, h2, h3 {
+    letter-spacing: -0.025em;
+}
+
+/* Container max-width */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
 /* Form input focus styles */
 input:focus, textarea:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(237, 137, 54, 0.2);
-}
-
-/* Mobile menu animation */
-@media (max-width: 768px) {
-    #mobile-menu {
-        z-index: 100;
-    }
-
-    #mobile-menu > div {
-        position: fixed;
-        right: 0;
-        top: 0;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    #mobile-menu.hidden {
-        display: none;
-    }
-
-    #mobile-menu.active > div {
-        transform: translateX(0) !important;
-    }
-}
-
-/* Hero section gradient overlay */
-.hero-overlay {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.7)
-    );
 }
 
 /* Custom animations */
@@ -88,22 +96,4 @@ input:focus, textarea:focus {
 
 .animate-fadeIn {
     animation: fadeIn 0.5s ease-out forwards;
-}
-
-/* Section spacing */
-section {
-    padding: 5rem 0;
-    scroll-margin-top: 4rem; /* Add space for fixed header when scrolling to sections */
-}
-
-/* Typography enhancements */
-h1, h2, h3 {
-    letter-spacing: -0.025em;
-}
-
-/* Container max-width */
-.container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
 }
