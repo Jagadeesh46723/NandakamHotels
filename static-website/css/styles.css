@@ -45,12 +45,23 @@ input:focus, textarea:focus {
 
 /* Mobile menu animation */
 @media (max-width: 768px) {
+    #mobile-menu {
+        z-index: 100;
+    }
+
     #mobile-menu > div {
+        position: fixed;
+        right: 0;
+        top: 0;
         transition: transform 0.3s ease-in-out;
     }
 
     #mobile-menu.hidden {
         display: none;
+    }
+
+    #mobile-menu.active > div {
+        transform: translateX(0) !important;
     }
 }
 
@@ -82,6 +93,7 @@ input:focus, textarea:focus {
 /* Section spacing */
 section {
     padding: 5rem 0;
+    scroll-margin-top: 4rem; /* Add space for fixed header when scrolling to sections */
 }
 
 /* Typography enhancements */
