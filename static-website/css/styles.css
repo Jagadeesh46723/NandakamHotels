@@ -45,13 +45,12 @@ input:focus, textarea:focus {
 
 /* Mobile menu animation */
 @media (max-width: 768px) {
-    .mobile-menu {
-        transform: translateX(100%);
+    #mobile-menu > div {
         transition: transform 0.3s ease-in-out;
     }
 
-    .mobile-menu.active {
-        transform: translateX(0);
+    #mobile-menu.hidden {
+        display: none;
     }
 }
 

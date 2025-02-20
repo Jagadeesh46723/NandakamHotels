@@ -21,11 +21,26 @@
                     Reserve a Table
                 </button>
             </div>
-            <button class="md:hidden p-2">
+            <button id="mobile-menu-button" class="md:hidden p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black/50 hidden md:hidden" style="backdrop-filter: blur(4px);">
+            <div class="bg-white h-screen w-64 p-6 transform transition-transform duration-300 translate-x-full">
+                <div class="flex flex-col gap-4">
+                    <a href="#menu" class="text-lg font-medium text-gray-600 hover:text-orange-500 transition-colors">Menu</a>
+                    <a href="#about" class="text-lg font-medium text-gray-600 hover:text-orange-500 transition-colors">About</a>
+                    <a href="#gallery" class="text-lg font-medium text-gray-600 hover:text-orange-500 transition-colors">Gallery</a>
+                    <a href="#contact" class="text-lg font-medium text-gray-600 hover:text-orange-500 transition-colors">Contact</a>
+                    <button class="mt-4 px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors">
+                        Reserve a Table
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -50,7 +65,7 @@
                             <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <button class="px-6 py-3 bg-white/10 text-white border border-white/20 rounded hover:bg-white/20 transition-colors">
+                    <button id="view-menu-btn" class="px-6 py-3 bg-white/10 text-white border border-white/20 rounded hover:bg-white/20 transition-colors">
                         View Menu
                     </button>
                 </div>
@@ -219,5 +234,51 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuContent = mobileMenu.querySelector('div');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuContent.classList.toggle('translate-x-full');
+        });
+
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuContent.classList.add('translate-x-full');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuContent.classList.add('translate-x-full');
+            });
+        });
+
+        // Smooth scroll to menu section
+        document.getElementById('view-menu-btn').addEventListener('click', () => {
+            document.getElementById('menu').scrollIntoView({ 
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for all navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
